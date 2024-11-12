@@ -1,0 +1,71 @@
+// Game State Variables
+let money = 0;
+let level = 1;
+let revenuePerClick = 1;
+let socialMediaInvested = 0;
+let seoInvested = 0;
+let emailMarketingInvested = 0;
+
+// DOM Elements
+const moneyElement = document.getElementById('money');
+const levelElement = document.getElementById('level');
+const revenueElement = document.getElementById('revenue');
+const earnButton = document.getElementById('earn-money');
+const socialMediaButton = document.getElementById('social-media');
+const seoButton = document.getElementById('seo');
+const emailMarketingButton = document.getElementById('email-marketing');
+
+// Update Game Stats
+function updateStats() {
+    moneyElement.textContent = `$${money}`;
+    levelElement.textContent = level;
+    revenueElement.textContent = revenuePerClick;
+}
+
+// Earn Money Logic
+earnButton.addEventListener('click', () => {
+    money += revenuePerClick;
+    updateStats();
+});
+
+// Invest in Social Media Ads
+socialMediaButton.addEventListener('click', () => {
+    if (money >= 10) {
+        money -= 10;
+        socialMediaInvested++;
+        revenuePerClick += 2;  // Social Media increases earnings by $2 per click
+        updateStats();
+        alert("You invested in Social Media Ads!");
+    } else {
+        alert("You don't have enough money!");
+    }
+});
+
+// Invest in SEO
+seoButton.addEventListener('click', () => {
+    if (money >= 50) {
+        money -= 50;
+        seoInvested++;
+        revenuePerClick += 5;  // SEO increases earnings by $5 per click
+        updateStats();
+        alert("You invested in SEO!");
+    } else {
+        alert("You don't have enough money!");
+    }
+});
+
+// Invest in Email Marketing
+emailMarketingButton.addEventListener('click', () => {
+    if (money >= 100) {
+        money -= 100;
+        emailMarketingInvested++;
+        revenuePerClick += 10;  // Email Marketing increases earnings by $10 per click
+        updateStats();
+        alert("You invested in Email Marketing!");
+    } else {
+        alert("You don't have enough money!");
+    }
+});
+
+// Initial Stats Update
+updateStats();
